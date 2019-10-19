@@ -5,7 +5,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class Books {
+public class Book {
 	private UUID bookId;
 	private String bookName;
 	private String description;
