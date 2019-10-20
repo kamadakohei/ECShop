@@ -33,7 +33,49 @@
 	      </nav>
 	</header>
 	<main>
-		
+		<div class="container">
+				<form method="post" th:action="@{/BuyBook}" th:object="${addBooksForm}">
+					<div class=”row“>
+					<div class=”page-header form-group”>
+						<h1 class="text-center" th:text="*{bookName}" ></h1>
+					</div>
+					</div>
+					<div class=”row“>
+						<div class=”form-group“ style="display: inline-block">
+							<img th:src="@{*{image}}">
+						</div>
+						<div class=”form-group” style="display: inline-block">
+							<table class="table table-bordered table-hover form-group">
+								<tr>
+									<th class="info active">出品者</th>
+								 	<td>
+								 		<div class="form-group" >
+								 			<span class="form-control" th:text="*{bookId}"></span>
+								 		</div>
+								 	</td>
+								 </tr>
+								 <tr>
+									<th class="info active">価格</th>
+								 	<td>
+								 		<div class="form-group">
+								 			<span class="form-control" th:text="*{price}" ></span>
+								 		</div>
+								 	</td>
+								 </tr>
+							</table>
+							<a class="btn btn-primary btn-lg pull-left" th:href="@{/}">戻る</a>
+							<button class="btn btn-danger btn-lg pull-right" type="submit">購入</button>
+						</div>
+					</div>
+				</form>
+				<form method="post" th:action="@{/Comment}">
+					<p>
+					<textarea cols="100" rows="10" maxlength="1000" placeholder="コメント欄"></textarea>
+					<br />
+					<input class="btn btn-success" type="submit" name="button" />
+					</p>
+				</form>
+			</div>
 	</main>
 </body>
 </html>

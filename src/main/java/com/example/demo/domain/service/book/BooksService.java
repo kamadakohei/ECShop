@@ -15,8 +15,11 @@ public class BooksService {
 	BooksRepository booksrepo;
 
 	public  List<Book> selectMany(){
-
 		return booksrepo.selectMany();
+	}
+
+	public Book selectOne(String bookId) {
+		return booksrepo.selectOne(bookId);
 	}
 
 }

@@ -43,4 +43,19 @@ public class BooksRepository {
 
 	return bookList;
 	}
+
+	public Book selectOne(String bookId) throws DataAccessException {
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM books" + " WHERE book_id = ?", bookId);
+
+		Book book = new Book();
+
+		book.setBookId(UUID.fromString((String)map.get("book_id")));
+		book.setBookName((String)map.get("book_name"));
+		book.setDescription((String)map.get("description"));
+		book.setPrice((int)map.get("price"));
+		book.setImage((String)map.get("image"));
+		book.setDel_flag((int)map.get("del_flag"));
+
+		return book;
+	}
 }
