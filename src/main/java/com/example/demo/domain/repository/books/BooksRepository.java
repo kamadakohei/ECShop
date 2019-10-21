@@ -4,7 +4,6 @@ package com.example.demo.domain.repository.books;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -30,8 +29,7 @@ public class BooksRepository {
 		for(Map<String, Object> map:getList) {
 
 			Book book = new Book();
-
-			book.setBookId(UUID.fromString((String)map.get("book_id")));
+			book.setBookId((int)map.get("book_Id"));
 			book.setBookName((String)map.get("book_name"));
 			book.setDescription((String)map.get("description"));
 			book.setPrice((int)map.get("price"));
@@ -44,12 +42,11 @@ public class BooksRepository {
 	return bookList;
 	}
 
-	public Book selectOne(String bookId) throws DataAccessException {
+	public Book selectOne(int bookId) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM books" + " WHERE book_id = ?", bookId);
 
 		Book book = new Book();
 
-		book.setBookId(UUID.fromString((String)map.get("book_id")));
 		book.setBookName((String)map.get("book_name"));
 		book.setDescription((String)map.get("description"));
 		book.setPrice((int)map.get("price"));
@@ -57,5 +54,11 @@ public class BooksRepository {
 		book.setDel_flag((int)map.get("del_flag"));
 
 		return book;
+	}
+
+	public int insertOne(Book book) throws DataAccessException {
+		int rowNumber = jdbc.update("insert into books(book_name, description, price, image, del_flag)" +
+													"values(?, ?, ?, ?, ?)",book.getBookName(),book.getDescription(),book.getPrice(),book.getImage(),book.getDel_flag());
+		return rowNumber;
 	}
 }
