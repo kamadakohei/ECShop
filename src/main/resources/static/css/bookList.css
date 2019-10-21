@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "UTF-8";
 main {
     background-color:#CCCCCC;
@@ -10,3 +11,17 @@ main {
 .card-header {
 	width: 100%;
 }
+=======
+@charset "UTF-8";
+main {
+    background-color:#CCCCCC;
+}
+
+.card-group {
+	margin: 10px 0px 10px 0px;
+}
+
+.card-header {
+	width: 100%;
+}
+>>>>>>> branch '#4' of https://github.com/kamadakohei/ECShop.git
