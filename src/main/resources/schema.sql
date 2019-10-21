@@ -1,5 +1,5 @@
 create table if not exists books (
-  book_id    varchar(36) primary key,
+  book_id  int primary key auto_increment,
   book_name  varchar(255),
   description varchar(512),
   price int,

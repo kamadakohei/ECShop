@@ -18,8 +18,21 @@ public class BooksService {
 		return booksrepo.selectMany();
 	}
 
-	public Book selectOne(String bookId) {
+	public Book selectOne(int bookId) {
 		return booksrepo.selectOne(bookId);
+	}
+
+	public boolean insertOne(Book book) {
+
+		int rowNumber = booksrepo.insertOne(book);
+
+		boolean result = false;
+
+		if(rowNumber > 0) {
+			result = true;
+		}
+
+		return result;
 	}
 
 }
