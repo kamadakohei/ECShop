@@ -34,6 +34,7 @@ public class BooksRepository {
 			book.setDescription((String)map.get("description"));
 			book.setPrice((int)map.get("price"));
 			book.setImage((String)map.get("image"));
+			book.setCustomerCode((String)map.get("customer_code"));
 			book.setDel_flag((int)map.get("del_flag"));
 
 			bookList.add(book);
@@ -51,14 +52,15 @@ public class BooksRepository {
 		book.setDescription((String)map.get("description"));
 		book.setPrice((int)map.get("price"));
 		book.setImage((String)map.get("image"));
+		book.setCustomerCode((String)map.get("customer_code"));
 		book.setDel_flag((int)map.get("del_flag"));
 
 		return book;
 	}
 
 	public int insertOne(Book book) throws DataAccessException {
-		int rowNumber = jdbc.update("insert into books(book_name, description, price, image, del_flag)" +
-													"values(?, ?, ?, ?, ?)",book.getBookName(),book.getDescription(),book.getPrice(),book.getImage(),book.getDel_flag());
+		int rowNumber = jdbc.update("insert into books(book_name, description, price, image, customer_code, del_flag)" +
+													"values(?, ?, ?, ?, ?, ?)",book.getBookName(),book.getDescription(),book.getPrice(),book.getImage(), book.getCustomerCode(), book.getDel_flag());
 		return rowNumber;
 	}
 }

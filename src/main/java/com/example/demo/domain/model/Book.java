@@ -9,5 +9,6 @@ public class Book {
 	private String description;
 	private int price;
 	private String image;
+	private String customerCode;
 	private int del_flag;
 }
