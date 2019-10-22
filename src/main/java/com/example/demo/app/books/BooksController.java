@@ -47,6 +47,7 @@ public class BooksController {
 			form.setDescription(book.getDescription());
 			form.setPrice(book.getPrice());
 			form.setImage(book.getImage());
+			form.setCustomerCode(book.getCustomerCode());
 			form.setDel_flag(book.getDel_flag());
 
 			//model.addAttribute("addbooksform", form);
@@ -68,6 +69,7 @@ public class BooksController {
 		book.setDescription(form.getDescription());
 		book.setPrice(form.getPrice());
 		book.setImage("/imgs/kokoro.jpg");
+		book.setCustomerCode("Kam");
 		book.setDel_flag(0);
 
 		System.out.println(book);
@@ -82,6 +84,8 @@ public class BooksController {
 
 		return "redirect:/";
 	}
+
+
 
 
 }

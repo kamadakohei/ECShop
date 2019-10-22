@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>商品一覧</title>
+	<title>出品画面</title>
 	<!--  Bootstrapの設定 -->
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" ></link>
     <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
@@ -22,15 +22,13 @@
 	                    <a class="nav-link" th:href="@{/login}">ログイン</a>
 	                </li >
 	                <li class="nav-item">
-	                    <a class="nav-link" th:href="@{/customers}">ユーザー登録</a>
+	                    <a class="nav-link" th:href="@{/userRaegistlation}">ユーザー登録</a>
 	                </li>
-	                <li class="nav-item dropdown">
-	                    <a class="nav-link dropdown-toggle" th:href="@{/userRaegistlation}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">マイページ</a>
-	                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                    	<a class="dropdown-item" th:href="@{/addBooks}">出品</a>
-	                    	<a class="dropdown-item" th:href="@{/exhibitedBooks}">出品した商品</a>
-	                    	<a class="dropdown-item" th:href="@{/}">購入した商品</a>
-	                    </div>
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/addBooks}">出品</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/userRaegistlation}">マイページ</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -42,21 +40,33 @@
 	</header>
 	<main>
 		<div class="container">
-			<div class="row">
-				<div class="card-group"  >
-	      			<div class="col-lg-4" th:each="book:${bookList}">
-						<div class="card">
-							<a class="card-header" th:href="@{'/bookDetail/' + ${book.bookId}}"><img class="w-100" th:src="@{${book.image}}" alt="商品データがありません"/></a>
-							<div class="card-body" th:href="@{/}">
-							    <h5 class="card-title" th:text="${book.bookName}"></h5>
-							    <p class="card-text" th:text="${book.price}">&yen;5,000</p>
-				    			<a th:href="@{/}" class="btn btn-outline-success">いいね</a>
-				  			</div>
+	  		<div class="page-header text-center">
+	  			<h1>サインアップ</h1>
+	  		</div>
+	  		<div class="row">
+	  		<form method="post" th:action="@{/customers}" class="col-8 mx-auto" th:object="${signUpCustomersForm}">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<th class="active">ユーザー名</th>
+						<td class="active">
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{customerName}"/>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="active">パスワード</th>
+						<td>
+						<div class="form-group" >
+							<input type="password" class="form-control" th:field="*{password}"/>
+						</div>
+						</td>
+					</tr>
+				</table>
+			<button class="btn btn-primary mx-auto d-block" type="submit">サインアップ</button>
+	  		</form>
+	  		</div>
+  		</div>
 	</main>
 </body>
 </html>
