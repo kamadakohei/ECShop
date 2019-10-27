@@ -30,9 +30,10 @@ public class CustomersController {
 		}
 
 		Customer customer = new Customer();
-		customer.setCustomerName(form.getCustomerName());
+		customer.setCustomerCode(form.getCustomerCode());
 		customer.setPassword(form.getPassword());
 		customer.setDel_flag(0);
+		customer.setRole("ROLE_ADMIN");
 
 		System.out.println(customer);
 

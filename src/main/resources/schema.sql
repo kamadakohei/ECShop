@@ -9,9 +9,9 @@ create table if not exists books (
 );
 
 create table if not exists customers (
-  customer_code  int primary key auto_increment,
-  customer_name  varchar(20),
-  password varchar(20),
-  del_flag int
+  customer_code  varchar(20) primary key,
+  password varchar(100),
+  del_flg int,
+  role varchar(50)
 );
 
