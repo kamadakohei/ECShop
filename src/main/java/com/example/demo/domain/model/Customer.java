@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Customer {
-	private int customerId;
-	private String customerName;
+	private String customerCode;
 	private String password;
 	private int del_flag;
+	private String role;
 }

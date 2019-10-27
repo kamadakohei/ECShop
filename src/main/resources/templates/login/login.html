@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>商品一覧</title>
+	<title>ログイン</title>
 	<!--  Bootstrapの設定 -->
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" ></link>
     <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
@@ -34,35 +34,22 @@
 	                </li>
 	            </ul>
 	        </div>
-	        <li class="nav-item" sec:authorize="isAuthenticated()">
-	        	<span class="nav-item " sec:authentication="principal.username">username</span>
-	        </li>
-	        <form class="ml-auto pull-right" method="post" th:action="@{/logout}">
-	        	<button type="submit" class="btn btn-danger my-2 my-sm-0">ログアウト</button>
-	        </form>
 	        <form class="ml-auto form-inline">
 	        	<input class="form-control mr-sm-2" type="search" >
 	        	<button type="submit" class="btn btn-success my-2 my-sm-0">検索</button>
 	        </form>
 	      </nav>
 	</header>
-	<main>
-		<div class="container">
-			<div class="row">
-				<div class="card-group"  >
-	      			<div class="col-lg-4" th:each="book:${bookList}">
-						<div class="card">
-							<a class="card-header" th:href="@{'/bookDetail/' + ${book.bookId}}"><img class="w-100" th:src="@{${book.image}}" alt="商品データがありません"/></a>
-							<div class="card-body" th:href="@{/}">
-							    <h5 class="card-title" th:text="${book.bookName}"></h5>
-							    <p class="card-text" th:text="${book.price}">&yen;5,000</p>
-				    			<a th:href="@{/}" class="btn btn-outline-success">いいね</a>
-				  			</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+	<main class="text-center">
+		<h1>Login</h1>
+  		<form method="post" action="/login">
+  		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">ログインメッセージ</p>
+  			<label>ユーザーID</label>
+  			<input type="text"/ name="userId"><br/>
+  			<label>パスワード</label>
+  			<input type="password" name="password"><br/>
+  			<button class="btn btn-primary" type="submit">ログイン</button>
+  		</form></br>
+  		<a th:href="@{'/customers'}">ユーザー登録はこちら</a>
 </body>
 </html>
