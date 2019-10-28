@@ -26,9 +26,9 @@
 	                </li>
 	                <li class="nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle" th:href="@{/userRaegistlation}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">マイページ</a>
-	                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" sec:authorize="isAuthenticated()">
 	                    	<a class="dropdown-item" th:href="@{/addBooks}">出品</a>
-	                    	<a class="dropdown-item" th:href="@{/exhibitedBooks}">出品した商品</a>
+	                    	<a class="dropdown-item" th:href="@{'/exhibitedBooks/' + ${customercode}}">出品した商品</a>
 	                    	<a class="dropdown-item" th:href="@{/}">購入した商品</a>
 	                    </div>
 	                </li>

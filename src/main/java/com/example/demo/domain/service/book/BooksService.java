@@ -35,4 +35,18 @@ public class BooksService {
 		return result;
 	}
 
+	public boolean updateOne(Book book) {
+		int rowNumber = booksrepo.UpdateOne(book);
+		boolean result = false;
+
+		if(rowNumber>0) {
+			result = true;
+		}
+		return result;
+	}
+
+	public  List<Book> selectselectExhibitedBookList(String customerCode){
+		return booksrepo.selectExhibitedBookList(customerCode);
+	}
+
 }

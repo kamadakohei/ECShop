@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>商品詳細</title>
+	<!--  Bootstrapの設定 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" ></link>
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <!--  CSSの設定 -->
+    <link th:href="@{/css/bookList.css}" rel="stylesheet"></link>
+<body>
+	<header>
+		<nav class="nav navbar-expand-md navbar navbar-dark bg-dark" role="navigation">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" th:href="@{/}">BURU</a>
+	        </div>
+	        <div>
+	            <ul class="navbar-nav">
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/login}">ログイン</a>
+	                </li >
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/userRaegistlation}">ユーザー登録</a>
+	                </li>
+	            </ul>
+	        </div>
+	        <form class="ml-auto form-inline">
+	        	<input class="form-control mr-sm-2" type="search" >
+	        	<button type="submit" class="btn btn-success my-2 my-sm-0">検索</button>
+	        </form>
+	      </nav>
+	</header>
+	<main>
+		<div class="container">
+				<form method="post" th:action="@{'/updateBook/' + ${addBooksForm.bookId}}" th:object="${addBooksForm}">
+					<div class=”row“>
+						<div class=”form-group“ style="display: inline-block">
+							<img th:src="@{*{image}}">
+						</div>
+						<div class=”form-group” style="display: inline-block">
+							<table class="table table-bordered table-hover form-group">
+								<tr>
+									<th class="info active">商品名</th>
+								 	<td>
+								 		<div class="form-group" >
+								 			<input type="text" class="form-control" th:field="*{bookName}"/>
+								 		</div>
+								 	</td>
+								 </tr>
+								<tr>
+									<th class="info active">詳細</th>
+								 	<td>
+								 		<div class="form-group" >
+								 			<input type="text" class="form-control" th:field="*{description}"/>
+								 		</div>
+								 	</td>
+								</tr>
+								<tr>
+									<th class="info active">価格</th>
+								 	<td>
+								 		<div class="form-group">
+								 			<input type="text" class="form-control" th:field="*{price}"/>
+								 		</div>
+								 	</td>
+								</tr>
+							</table>
+							<a class="btn btn-primary btn-lg pull-left" th:href="@{/}">戻る</a>
+							<button class="btn btn-danger btn-lg pull-right" type="submit">変更</button>
+						</div>
+					</div>
+				</form>
+			</div>
+	</main>
+</body>
+</html>

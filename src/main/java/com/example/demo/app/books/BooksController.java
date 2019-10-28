@@ -3,6 +3,7 @@ package com.example.demo.app.books;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,10 +23,13 @@ public class BooksController {
 	BooksService booksService;
 
 	@GetMapping("/")
-	public String getBooks(Model model){
+	public String getBooks(Model model, Authentication authentication){
 
+		String customercode = authentication.getName();
+		System.out.println(customercode);
 		List<Book> bookList = booksService.selectMany();
 		model.addAttribute("bookList", bookList);
+		model.addAttribute("customercode", customercode);
 		return "books/bookList";
 	}
 
@@ -84,6 +88,63 @@ public class BooksController {
 
 		return "redirect:/";
 	}
+
+	@GetMapping("/exhibitedBooks/{customercode}")
+	public String getexhibitedBooks(Model model, @PathVariable("customercode") String customerCode) {
+
+		List<Book> exibitedbookList = booksService.selectselectExhibitedBookList(customerCode);
+		model.addAttribute("exibitedbookList", exibitedbookList);
+		return "books/exhibitedBookList";
+	}
+
+	@GetMapping ("/updateBook/{id}")
+	public String updateDetailBook(@ModelAttribute AddBooksForm form, Model model, @PathVariable("id") String Id) {
+
+		System.out.println("bookId=" + Id);
+		if(Id != null && Id.length()>0) {
+
+			int bookId = Integer.parseInt(Id);
+			Book book = booksService.selectOne(bookId);
+
+			form.setBookId(bookId);
+			form.setBookName(book.getBookName());
+			form.setDescription(book.getDescription());
+			form.setPrice(book.getPrice());
+			form.setImage(book.getImage());
+			form.setCustomerCode(book.getCustomerCode());
+			form.setDel_flag(book.getDel_flag());
+
+			//model.addAttribute("addbooksform", form);
+		}
+		return "books/updateBook";
+	}
+
+	@PostMapping("/updateBook/{id}")
+	public String updateBook(@ModelAttribute AddBooksForm form, Model model, @PathVariable("id") String Id) {
+		Book book = new Book();
+
+		System.out.println(Id);
+		book.setBookId(Integer.parseInt(Id));
+		book.setBookName(form.getBookName());
+		book.setDescription(form.getDescription());
+		book.setPrice(form.getPrice());
+
+
+		System.out.println(book);
+
+		boolean result = booksService.updateOne(book);
+		System.out.println(result);
+		if(result = true) {
+			model.addAttribute("result", "更新成功");
+		}else {
+			model.addAttribute("result", "更新失敗");
+		}
+
+		return "redirect:/";
+	}
+
+
+
 
 
 
