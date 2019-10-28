@@ -63,4 +63,31 @@ public class BooksRepository {
 													"values(?, ?, ?, ?, ?, ?)",book.getBookName(),book.getDescription(),book.getPrice(),book.getImage(), book.getCustomerCode(), book.getDel_flag());
 		return rowNumber;
 	}
+
+	public int UpdateOne(Book book) throws DataAccessException {
+		int rowNumber = jdbc.update("update books set book_name=?, description=?, price=? where book_id=?", book.getBookName(), book.getDescription(), book.getPrice(), book.getBookId());
+		return rowNumber;
+	}
+
+	public List<Book> selectExhibitedBookList(String customerCode) throws DataAccessException {
+		List<Map<String, Object>> getExhibitedBookList = jdbc.queryForList("SELECT * FROM books" + " WHERE customer_code = ?", customerCode);
+		List<Book> exhibitedbookList = new ArrayList<>();
+
+		for(Map<String, Object> map:getExhibitedBookList) {
+
+			Book book = new Book();
+			book.setBookId((int)map.get("book_Id"));
+			book.setBookName((String)map.get("book_name"));
+			book.setDescription((String)map.get("description"));
+			book.setPrice((int)map.get("price"));
+			book.setImage((String)map.get("image"));
+			book.setCustomerCode((String)map.get("customer_code"));
+			book.setDel_flag((int)map.get("del_flag"));
+			System.out.println(book);
+
+			exhibitedbookList.add(book);
+		}
+
+	return exhibitedbookList;
+	}
 }
