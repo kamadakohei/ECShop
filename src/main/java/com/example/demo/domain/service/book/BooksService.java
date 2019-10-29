@@ -45,6 +45,16 @@ public class BooksService {
 		return result;
 	}
 
+	public boolean deleteOne(Book book) {
+		int rowNumber = booksrepo.DeteleOne(book);
+		boolean result = false;
+
+		if(rowNumber>0) {
+			result = true;
+		}
+		return result;
+	}
+
 	public  List<Book> selectselectExhibitedBookList(String customerCode){
 		return booksrepo.selectExhibitedBookList(customerCode);
 	}

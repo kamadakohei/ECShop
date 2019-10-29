@@ -23,7 +23,7 @@ public class BooksRepository {
 
 	public List<Book> selectMany() throws DataAccessException {
 
-		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM books");
+		List<Map<String, Object>> getList = jdbc.queryForList("SELECT * FROM books where del_flag=0");
 		List<Book> bookList = new ArrayList<>();
 
 		for(Map<String, Object> map:getList) {
@@ -69,8 +69,13 @@ public class BooksRepository {
 		return rowNumber;
 	}
 
+	public int DeteleOne(Book book) throws DataAccessException {
+		int rowNumber = jdbc.update("update books set del_flag=1 where book_id=?", book.getBookId());
+		return rowNumber;
+	}
+
 	public List<Book> selectExhibitedBookList(String customerCode) throws DataAccessException {
-		List<Map<String, Object>> getExhibitedBookList = jdbc.queryForList("SELECT * FROM books" + " WHERE customer_code = ?", customerCode);
+		List<Map<String, Object>> getExhibitedBookList = jdbc.queryForList("SELECT * FROM books" + " WHERE customer_code = ? and del_flag=0", customerCode);
 		List<Book> exhibitedbookList = new ArrayList<>();
 
 		for(Map<String, Object> map:getExhibitedBookList) {
