@@ -143,6 +143,27 @@ public class BooksController {
 		return "redirect:/";
 	}
 
+	@GetMapping("deleteBook/{id}")
+	public String deteleBook(@ModelAttribute AddBooksForm form, Model model, @PathVariable("id") String id) {
+
+		int bookId = Integer.parseInt(id);
+		System.out.print(id);
+		Book book = new Book();
+
+		book.setBookId(bookId);
+
+		boolean result = booksService.deleteOne(book);
+		System.out.println(result);
+		if(result = true) {
+			System.out.println("成功");
+		}else {
+			System.out.println("失敗");
+		}
+
+		return "redirect:/";
+	}
+
+
 
 
 

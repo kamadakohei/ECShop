@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/webjars/**", "/css/**", "/imgs/**");
+		web.debug(true);
+
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			  .antMatchers("/css/**").permitAll()
 			  .antMatchers("/login").permitAll()
 			  .antMatchers("/customers").permitAll()
-			  .antMatchers("/h2-console/**").permitAll()
+			  .antMatchers("/h2-console/*.jsp").permitAll()
 			  .antMatchers("/").permitAll()
 			  .anyRequest().authenticated();
 
