@@ -15,7 +15,7 @@
 
 - Java(Spring boot)
 - AWS(EC2,RDS,ECS,ECR..etc)
-- CircleCI(現在は
+- CircleCI(現在はJenkins)
 
 
 ## 要件定義
