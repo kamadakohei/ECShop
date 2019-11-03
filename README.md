@@ -15,7 +15,7 @@
 
 - Java(Spring boot)
 - AWS(EC2,RDS,ECS,ECR..etc)
-- CircleCI
+- CircleCI(現在は
 
 
 ## 要件定義
