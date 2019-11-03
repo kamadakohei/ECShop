@@ -52,7 +52,7 @@
 				<div class="card-group"  >
 	      			<div class="col-lg-4" th:each="book:${bookList}">
 						<div class="card">
-							<a class="card-header" th:href="@{'/bookDetail/' + ${book.bookId}}"><img class="w-100" th:src="@{${book.image}}" alt="画像がありません"/></a>
+							<a class="card-header" th:href="@{'/bookDetail/' + ${book.bookId}}"><img class="w-100" th:src="@{${book.image}}" alt="ありません"/></a>
 							<div class="card-body" th:href="@{/}">
 							    <h5 class="card-title" th:text="${book.bookName}"></h5>
 							    <p class="card-text" th:text="${book.price}">&yen;5,000</p>
