@@ -14,7 +14,7 @@
 ## 技術要素
 
 - Java(Spring boot)
-- AWS(EC2,RDS,ECS,ECR..etc)
+- AWS(EC2,RDS,ECS,ECR..etc)(現在は費用の関係でさくらVPS)
 - CircleCI(現在はJenkins)
 
 
