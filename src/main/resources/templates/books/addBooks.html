@@ -74,8 +74,9 @@
 						<th class="active">商品画像</th>
 						<td>
 							<div class="form-group" >
-								<input type="file"/>
-								<button type="submit">送信</button>
+								画像を選択：
+								<input type="file" accept="image/*" id="bookimage"/>
+								<img id="imagepreview">
 							</div>
 						</td>
 					</tr>
@@ -85,5 +86,6 @@
 	  		</div>
   		</div>
 	</main>
+	<script type="text/javascript" th:src="@{/javascript/preview.js}"></script>
 </body>
 </html>
