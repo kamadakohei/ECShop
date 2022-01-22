@@ -44,7 +44,13 @@
 - SNS認証(twiiter,google等)
 - ソート機能
 
-
+### ローカル環境でのビルド方法
+```
+$ git clone https://github.com/kamadakohei/ECShop.git
+$ mvnw clean package (Linux環境の場合は、./mvnw clean package)
+$ cd target
+$ java -jar ECShop-0.0.1-SNAPSHOT.jar --server.port=8080 &
+```
 
 
 
